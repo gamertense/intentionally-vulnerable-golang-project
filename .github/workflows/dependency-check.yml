@@ -1,0 +1,15 @@
+name: Run Dependency Check
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup environment
+        run: sudo apt-get update && sudo apt-get install -y curl
+      - name: Execute build.sh script
+        run: |
+          chmod +x ./build.sh
+          ./build.sh
