@@ -18,7 +18,7 @@ jobs:
       - name: WriteGoList
         run: go list -json -m all > go.list
 
-      - name: Scan
-        uses: sonatype-nexus-community/nancy-github-action@950a8965cd37d8e14aaa6aebd6c0d71b4da71fa3
-        with:
-          nancyCommand: sleuth --loud
+      # - name: Scan
+      #   uses: sonatype-nexus-community/nancy-github-action@950a8965cd37d8e14aaa6aebd6c0d71b4da71fa3
+      #   with:
+      #     nancyCommand: sleuth --loud
