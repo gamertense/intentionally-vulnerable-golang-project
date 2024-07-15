@@ -19,7 +19,7 @@ jobs:
         run: go list -json -m all > go.list
 
       - name: Scan
-        uses: sonatype-nexus-community/nancy-github-action@950a8965cd37d8e14aaa6aebd6c0d71b4da71fa3
+        uses: sonatype-nexus-community/nancy-github-action@main
         with:
           nancyCommand: sleuth --loud
           nancyVersion: "v1.0.46"
