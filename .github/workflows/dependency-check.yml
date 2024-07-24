@@ -20,10 +20,10 @@ jobs:
 
       - name: Scan
         continue-on-error: true
-        uses: sonatype-nexus-community/nancy-github-action@main
+        uses: gamertense/nancy-github-action@main
         with:
           nancyCommand: sleuth
-          goListFile: go.list > nancy-report.txt
+          goListFile: go.list
 
       - name: Print Nancy Report
         run: cat nancy-report.txt
