@@ -22,7 +22,8 @@ jobs:
         continue-on-error: true
         uses: sonatype-nexus-community/nancy-github-action@main
         with:
-          nancyCommand: sleuth > nancy-report.txt
+          nancyCommand: sleuth
+          goListFile: go.list > nancy-report.txt
 
       - name: Print Nancy Report
         run: cat nancy-report.txt
