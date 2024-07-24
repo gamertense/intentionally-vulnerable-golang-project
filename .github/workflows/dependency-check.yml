@@ -22,12 +22,12 @@ jobs:
         continue-on-error: true
         uses: gamertense/nancy-github-action@main
         with:
-          nancyCommand: sleuth -o json-pretty
+          nancyCommand: sleuth -o csv
           goListFile: go.list
-          reportFile: nancy-report.json
+          reportFile: nancy-report.csv
 
       - name: Upload Nancy Report
         uses: actions/upload-artifact@v2
         with:
           name: nancy-report
-          path: nancy-report.json
+          path: nancy-report.csv
