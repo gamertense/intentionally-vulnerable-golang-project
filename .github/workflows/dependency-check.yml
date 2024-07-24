@@ -15,7 +15,7 @@ jobs:
       - name: Check out code into the Go module directory
         uses: actions/checkout@v4
 
-      - name: WriteGoList
+      - name: Get dependencies
         run: go list -json -m all > go.list
 
       - name: Scan
@@ -23,6 +23,9 @@ jobs:
         uses: sonatype-nexus-community/nancy-github-action@main
         with:
           nancyCommand: sleuth > nancy-report.txt
+
+      - name: Print Nancy Report
+        run: cat nancy-report.txt
 
       - name: Upload Nancy Report
         uses: actions/upload-artifact@v2
