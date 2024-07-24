@@ -21,7 +21,7 @@ jobs:
       - name: Scan
         uses: sonatype-nexus-community/nancy-github-action@main
         with:
-          nancyCommand: sleuth
+          nancyCommand: sleuth > nancy-report.txt
 
       - name: Upload Nancy Report
         uses: actions/upload-artifact@v2
