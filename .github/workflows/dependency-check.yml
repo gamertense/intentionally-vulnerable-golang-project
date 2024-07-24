@@ -22,3 +22,9 @@ jobs:
         uses: sonatype-nexus-community/nancy-github-action@main
         with:
           nancyCommand: sleuth
+
+      - name: Upload Nancy Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: nancy-report
+          path: nancy-report.txt
