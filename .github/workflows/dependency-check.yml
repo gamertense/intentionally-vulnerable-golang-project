@@ -3,7 +3,7 @@ name: Run Dependency Check
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
-  build:
+  check-dependencies:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Go 1.x
@@ -19,12 +19,12 @@ jobs:
         run: go list -json -m all > go.list
 
       - name: Scan
+        continue-on-error: true
         uses: sonatype-nexus-community/nancy-github-action@main
         with:
           nancyCommand: sleuth > nancy-report.txt
 
       - name: Upload Nancy Report
-        continue-on-error: true
         uses: actions/upload-artifact@v2
         with:
           name: nancy-report
