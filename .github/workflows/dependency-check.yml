@@ -24,6 +24,7 @@ jobs:
           nancyCommand: sleuth > nancy-report.txt
 
       - name: Upload Nancy Report
+        continue-on-error: true
         uses: actions/upload-artifact@v2
         with:
           name: nancy-report
