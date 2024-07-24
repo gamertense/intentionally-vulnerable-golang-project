@@ -1,6 +1,6 @@
 name: Run Dependency Check
 
-on: [push, pull_request, workflow_dispatch]
+on: [push, pull_request]
 
 jobs:
   check-dependencies:
@@ -30,7 +30,7 @@ jobs:
         run: cat nancy-report.txt
 
       - name: Upload Nancy Report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: nancy-report
           path: nancy-report.txt
