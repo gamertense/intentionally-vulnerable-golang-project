@@ -18,18 +18,15 @@ jobs:
       - name: Get dependencies
         run: go list -json -m all > go.list
 
-      - name: Scan
-        continue-on-error: true
+      - name: Scan dependencies with Nancy
         uses: gamertense/nancy-github-action@main
         with:
           nancyCommand: sleuth
           goListFile: go.list
           reportFile: nancy-report.txt
 
-      - name: Print the report
-        run: cat nancy-report.txt
-
       - name: Upload Nancy Report
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: nancy-report
