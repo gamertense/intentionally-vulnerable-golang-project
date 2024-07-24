@@ -24,9 +24,13 @@ jobs:
         with:
           nancyCommand: sleuth
           goListFile: go.list
+          reportFile: nancy-report.txt
 
       - name: Print Nancy Report
-        run: cat nancy-report.txt
+        run: |
+          pwd
+          ls -l
+          cat nancy-report.txt
 
       - name: Upload Nancy Report
         uses: actions/upload-artifact@v2
