@@ -26,6 +26,9 @@ jobs:
           goListFile: go.list
           reportFile: nancy-report.txt
 
+      - name: Print the report
+        run: cat nancy-report.txt
+
       - name: Upload Nancy Report
         uses: actions/upload-artifact@v2
         with:
