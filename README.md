@@ -1,10 +1,10 @@
-# Intentionally vulnerable Golang project
+# Intentionally Vulnerable Golang Project
 
 [![Run Dependency Check](https://github.com/gamertense/intentionally-vulnerable-golang-project/actions/workflows/dependency-check.yml/badge.svg)](https://github.com/gamertense/intentionally-vulnerable-golang-project/actions/workflows/dependency-check.yml)
 
-This repository contains a minimal project for testing Sonatype's `nancy` against an intentionally vulnerable list of dependencies. It also provides a small example of how to use it in GitHub Actions.
+This repository contains a minimal project designed to test Sonatype's `nancy` against an intentionally vulnerable list of dependencies. It also provides an example of how to use `nancy` in GitHub Actions.
 
-## Running Locally
+## Running the Project Locally
 
 To run the project locally, execute the following command:
 
@@ -12,11 +12,11 @@ To run the project locally, execute the following command:
 go run main.go
 ```
 
-You will see the following message in the console:
+You should see the following message in the console:
 
 > HI I'M INTENTIONALLY USING VULNERABLE LIBS
 
-## Running Dependency Check
+## Running Dependency Check Locally
 
 To run the dependency check locally, use the following command:
 
@@ -25,7 +25,7 @@ To run the dependency check locally, use the following command:
 go list -json -deps ./... | docker run --rm -i sonatypecommunity/nancy:latest sleuth
 ```
 
-This will display a summary table with the vulnerabilities found in the dependencies:
+This command will display a summary table with the vulnerabilities found in the dependencies:
 
 ```
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -37,9 +37,9 @@ This will display a summary table with the vulnerabilities found in the dependen
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━┛
 ```
 
-## GitHub Actions
+## Using GitHub Actions
 
-This repository includes a GitHub Actions workflow that runs the dependency check on every push to the `main` branch. You can find the workflow file [here](.github/workflows/dependency-check.yml). The badge at the top of this README indicates the status of the last run.
+This project includes a GitHub Actions workflow to automatically run the dependency check. The workflow is defined in the `.github/workflows/dependency-check.yml` file. The status of the latest run can be seen in the badge at the top of this README.
 
 ### Report format
 
