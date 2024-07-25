@@ -2,9 +2,54 @@
 
 [![Run Dependency Check](https://github.com/gamertense/intentionally-vulnerable-golang-project/actions/workflows/dependency-check.yml/badge.svg)](https://github.com/gamertense/intentionally-vulnerable-golang-project/actions/workflows/dependency-check.yml)
 
-This is just a minimal repo for testing Sonatype's `nancy` against an intentionally vulnerable list of
-dependencies, and as well showing a small example of how to use it in GitHub Actions.
+This repository contains a minimal project for testing Sonatype's `nancy` against an intentionally vulnerable list of dependencies. It also provides a small example of how to use it in GitHub Actions.
 
-Project is currently setup to use both `dep` and `go mod` so you should be able to use either one.
+## Running Locally
 
-To see how `nancy` will output when finding vulnerabilities, check out [this build on Travis-CI](https://travis-ci.org/github/sonatype-nexus-community/intentionally-vulnerable-golang-project/builds/671448888) or [this build on CircleCI](https://circleci.com/gh/sonatype-nexus-community/intentionally-vulnerable-golang-project/26)
+To run the project locally, execute the following command:
+
+```bash
+go run main.go
+```
+
+You will see the following message in the console:
+
+> HI I'M INTENTIONALLY USING VULNERABLE LIBS
+
+## Running Dependency Check
+
+To run the dependency check locally, use the following command:
+
+```bash
+# Output the dependencies in JSON format and pipe it to the nancy container
+go list -json -deps ./... | docker run --rm -i sonatypecommunity/nancy:latest sleuth
+```
+
+This will display a summary table with the vulnerabilities found in the dependencies:
+
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Summary                     ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━┫
+┃ Audited Dependencies    ┃ 3 ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━┫
+┃ Vulnerable Dependencies ┃ 2 ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━┛
+```
+
+## GitHub Actions
+
+This repository includes a GitHub Actions workflow that runs the dependency check on every push to the `main` branch. You can find the workflow file [here](.github/workflows/dependency-check.yml). The badge at the top of this README indicates the status of the last run.
+
+### Report format
+
+To change the format of the report, modify the `nancyCommand` and `reportFile` variables in the workflow file. The following table shows the available formats:
+
+| nancyCommand          | reportFile        |
+| --------------------- | ----------------- |
+| sleuth -o csv         | nancy-report.csv  |
+| sleuth -o json-pretty | nancy-report.json |
+
+### Downloading the report
+
+To download the report from the GitHub Actions workflow, click on the `Run Dependency Check` badge and then select the latest run. In the `Artifacts` section, you will find the `nancy-report` file.
